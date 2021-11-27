@@ -46,7 +46,10 @@
                   flex-column
                 "
               >
-                <h1 class="text-white m-2">Blockchain Carbon Registry</h1>
+                <h1 class="text-white m-2">
+                  Blockchain<br />
+                  Carbon Registry
+                </h1>
                 <p class="lead text-white d-none d-sm-block">
                   Become carbon neutral
                 </p>

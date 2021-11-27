@@ -54,6 +54,11 @@ export default {
           icon: "pi pi-fw pi-file",
           items: [
             {
+              label: "Basic information",
+              icon: "pi pi-fw pi-apple",
+              to: "/plant/info",
+            },
+            {
               label: "Registration",
               icon: "pi pi-fw pi-user",
             },
