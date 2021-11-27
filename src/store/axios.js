@@ -55,7 +55,7 @@ const actions = {
             });
             shown = true;
             dispatch(
-              "wallet/logout",
+              "auth/logout",
               {},
               {
                 root: true,
@@ -100,7 +100,7 @@ const actions = {
             );
           }
         });
-      if (response && response.status === 200) {
+      if (response && (response.status === 200 || response.status === 201)) {
         return response.data;
       }
       if (response && response.status === 204) {
@@ -169,7 +169,7 @@ const actions = {
               });
               shown = true;
               dispatch(
-                "wallet/logout",
+                "auth/logout",
                 {},
                 {
                   root: true,
@@ -246,7 +246,7 @@ const actions = {
               });
               shown = true;
               dispatch(
-                "wallet/logout",
+                "auth/logout",
                 {},
                 {
                   root: true,
@@ -290,7 +290,7 @@ const actions = {
             }
           });
       }
-      if (response && response.status === 200) {
+      if (response && (response.status === 200 || response.status === 201)) {
         return response.data;
       }
       if (response && response.status === 204) {
@@ -307,7 +307,7 @@ const actions = {
       dispatch("toast/openError", e.message, { root: true });
     }
   },
-  async post({ dispatch }, { url, params, body }) {
+  async post({ dispatch }, { url, params, body, authHeader }) {
     let response = null;
     // console.log('post', url, params)
     try {
@@ -325,6 +325,9 @@ const actions = {
         }
       }
       const headers = {};
+      if (authHeader) {
+        headers["Authorization"] = authHeader;
+      }
       let shown = false;
       response = await axios.post(url, fd, { headers }).catch(function (error) {
         if (error.response && error.response && error.response.status == 401) {
@@ -333,7 +336,7 @@ const actions = {
           });
           shown = true;
           dispatch(
-            "wallet/logout",
+            "auth/logout",
             {},
             {
               root: true,
@@ -381,7 +384,7 @@ const actions = {
         }
       });
 
-      if (response && response.status === 200 && response.data) {
+      if (response && (response.status === 200 || response.status === 201)) {
         return response.data;
       }
       if (response && response.status === 204) {
@@ -424,7 +427,7 @@ const actions = {
           });
           shown = true;
           dispatch(
-            "wallet/logout",
+            "auth/logout",
             {},
             {
               root: true,
@@ -472,7 +475,7 @@ const actions = {
         }
       });
 
-      if (response && response.status === 200 && response.data) {
+      if (response && (response.status === 200 || response.status === 201)) {
         return response.data;
       }
       if (response && response.status === 204) {
@@ -516,7 +519,7 @@ const actions = {
             });
             shown = true;
             dispatch(
-              "wallet/logout",
+              "auth/logout",
               {},
               {
                 root: true,
@@ -561,7 +564,7 @@ const actions = {
             );
           }
         });
-      if (response && response.status === 200) {
+      if (response && (response.status === 200 || response.status === 201)) {
         return response.data;
       }
       if (response && response.status === 204) {

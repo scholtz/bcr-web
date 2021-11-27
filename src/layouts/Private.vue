@@ -77,9 +77,18 @@ export default {
   methods: {
     ...mapActions({
       setVM: "toast/setVM",
+      openError: "toast/openError",
+      authAuthenticate: "auth/authenticate",
     }),
-    authenticate() {
+    async authenticate() {
       console.log("Authenticate", this.user);
+      const isAuth = await this.authAuthenticate({
+        user: this.user,
+        pass: this.pass,
+      });
+      if (!isAuth) {
+        this.openError("Error while authentication");
+      }
     },
   },
 };
