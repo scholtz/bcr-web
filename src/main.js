@@ -31,6 +31,8 @@ import MultiSelect from "primevue/multiselect";
 import Dropdown from "primevue/dropdown";
 import Galleria from "primevue/galleria";
 import Badge from "primevue/badge";
+import Menubar from "primevue/menubar";
+
 import "primevue/resources/themes/saga-blue/theme.css";
 
 import "primevue/resources/primevue.min.css";
@@ -54,6 +56,7 @@ myApp.component("Dropdown", Dropdown);
 myApp.component("Galleria", Galleria);
 myApp.component("Badge", Badge);
 myApp.component("MultiSelect", MultiSelect);
+myApp.component("Menubar", Menubar);
 myApp.directive("badge", BadgeDirective);
 
 myApp.config.globalProperties.$filters = {

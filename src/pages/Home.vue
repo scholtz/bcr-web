@@ -1,90 +1,97 @@
 <template>
-  <div class="section section-hero section-shaped d-flex flex-column h-100">
-    <div class="shape shape-style-1 shape-primary">
-      <span class="span-150"></span>
-      <span class="span-50"></span>
-      <span class="span-50"></span>
-      <span class="span-50"></span>
-      <span class="span-75"></span>
-      <span class="span-100"></span>
-      <span class="span-75"></span>
-      <span class="span-50"></span>
-      <span class="span-100"></span>
-      <span class="span-50"></span>
-      <span class="span-100"></span>
-    </div>
-    <div class="page-header h-100 d-flex align-items-center">
-      <div
-        class="
-          container
-          shape-container
-          d-flex
-          align-items-center
-          py-lg
-          d-flex
-          flex-column
-        "
-      >
-        <div class="col px-0">
-          <div
-            class="
-              row
-              align-items-center
-              justify-content-center
-              d-flex
-              flex-column
-            "
-          >
+  <PublicLayout>
+    <div class="section section-hero section-shaped d-flex flex-column h-100">
+      <div class="shape shape-style-1 shape-primary">
+        <span class="span-150"></span>
+        <span class="span-50"></span>
+        <span class="span-50"></span>
+        <span class="span-50"></span>
+        <span class="span-75"></span>
+        <span class="span-100"></span>
+        <span class="span-75"></span>
+        <span class="span-50"></span>
+        <span class="span-100"></span>
+        <span class="span-50"></span>
+        <span class="span-100"></span>
+      </div>
+      <div class="page-header h-100 d-flex align-items-center">
+        <div
+          class="
+            container
+            shape-container
+            d-flex
+            align-items-center
+            py-lg
+            d-flex
+            flex-column
+          "
+        >
+          <div class="col px-0">
             <div
               class="
-                font-weight-bold
-                col-lg-10
-                text-center
-                align-middle
+                row
+                align-items-center
+                justify-content-center
                 d-flex
                 flex-column
               "
             >
-              <img
-                src="/img/bcr-logo-boxed.svg"
-                height="150"
-                class="m-5 d-none d-sm-block"
-                alt="Blockchain Carbon Registry"
-              />
+              <div
+                class="
+                  font-weight-bold
+                  col-lg-10
+                  text-center
+                  align-middle
+                  d-flex
+                  flex-column
+                "
+              >
+                <img
+                  src="/img/bcr-logo-boxed.svg"
+                  height="150"
+                  class="m-5 d-none d-sm-block"
+                  alt="Blockchain Carbon Registry"
+                />
 
-              <img
-                src="/img/bcr-logo-boxed.svg"
-                height="100"
-                class="m-2 d-block d-sm-none"
-                alt="Blockchain Carbon Registry"
-              />
+                <img
+                  src="/img/bcr-logo-boxed.svg"
+                  height="100"
+                  class="m-2 d-block d-sm-none"
+                  alt="Blockchain Carbon Registry"
+                />
 
-              <h1 class="text-white m-2">Blockchain Carbon Registry</h1>
-              <p class="lead text-white d-none d-sm-block">
-                Become carbon neutral
-              </p>
+                <h1 class="text-white m-2">Blockchain Carbon Registry</h1>
+                <p class="lead text-white d-none d-sm-block">
+                  Become carbon neutral
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg
+          x="0"
+          y="0"
+          viewBox="0 0 2560 100"
+          preserveAspectRatio="none"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
     </div>
-    <div class="separator separator-bottom separator-skew zindex-100">
-      <svg
-        x="0"
-        y="0"
-        viewBox="0 0 2560 100"
-        preserveAspectRatio="none"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-      </svg>
-    </div>
-  </div>
+  </PublicLayout>
 </template>
 
 <script>
-export default {};
+import PublicLayout from "../layouts/Public.vue";
+export default {
+  components: {
+    PublicLayout,
+  },
+};
 </script>
 <style scoped>
 @media (min-width: 768px) {
