@@ -32,11 +32,14 @@ import Dropdown from "primevue/dropdown";
 import Galleria from "primevue/galleria";
 import Badge from "primevue/badge";
 import Menubar from "primevue/menubar";
+import Password from "primevue/password";
+import Button from "primevue/button";
 
 import "primevue/resources/themes/saga-blue/theme.css";
 
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
+
 import i18n from "./i18n";
 
 const myApp = createApp(App).use(i18n);
@@ -57,6 +60,8 @@ myApp.component("Galleria", Galleria);
 myApp.component("Badge", Badge);
 myApp.component("MultiSelect", MultiSelect);
 myApp.component("Menubar", Menubar);
+myApp.component("Password", Password);
+myApp.component("Button", Button);
 myApp.directive("badge", BadgeDirective);
 
 myApp.config.globalProperties.$filters = {

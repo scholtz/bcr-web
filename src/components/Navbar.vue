@@ -13,6 +13,7 @@ export default {
             {
               label: "User management",
               icon: "pi pi-fw pi-user",
+              to: "/admin/user-management",
             },
             {
               label: "Role management",
@@ -75,6 +76,11 @@ export default {
               icon: "pi pi-fw pi-user",
             },
           ],
+        },
+        {
+          label: "Quit",
+          icon: "pi pi-fw pi-power-off",
+          to: "/logout",
         },
       ],
     };
