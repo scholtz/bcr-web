@@ -46,20 +46,6 @@
                   flex-column
                 "
               >
-                <img
-                  src="/img/bcr-logo-boxed.svg"
-                  height="150"
-                  class="m-5 d-none d-sm-block"
-                  alt="Blockchain Carbon Registry"
-                />
-
-                <img
-                  src="/img/bcr-logo-boxed.svg"
-                  height="100"
-                  class="m-2 d-block d-sm-none"
-                  alt="Blockchain Carbon Registry"
-                />
-
                 <h1 class="text-white m-2">Blockchain Carbon Registry</h1>
                 <p class="lead text-white d-none d-sm-block">
                   Become carbon neutral
