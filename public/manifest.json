@@ -2,16 +2,6 @@
   "name": "Blockchain Carbon Registry",
   "short_name": "BCR",
   "theme_color": "#4DBA87",
-  "protocol_handlers": [
-    {
-      "protocol": "web+algorand",
-      "url": "/pay/%s"
-    },
-    {
-      "protocol": "algorand",
-      "url": "/pay/%s"
-    }
-  ],
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

@@ -13,59 +13,32 @@
       <slot></slot>
     </div>
     <div class="d-flex flex-column flex-grow-1" v-else>
-      <Dialog :visible="true">
-        <template #header>
-          <h3>Please authenticate</h3>
-        </template>
-        <form @submit="authenticate">
-          <div class="p-inputgroup my-1">
-            <span class="p-inputgroup-addon">
-              <i class="pi pi-user"></i>
-            </span>
-            <InputText v-model="user" placeholder="Username" />
-          </div>
-          <div class="p-inputgroup my-1">
-            <span class="p-inputgroup-addon">
-              <i class="pi pi-lock"></i>
-            </span>
-            <Password v-model="pass" />
-          </div>
-        </form>
-        <template #footer>
-          <Button
-            label="Cancel"
-            icon="pi pi-times"
-            class="p-button-text"
-            @click="$router.push('/')"
-          />
-          <Button
-            label="Login"
-            icon="pi pi-check"
-            autofocus
-            @click="authenticate"
-          />
-        </template>
-      </Dialog>
+      <div v-if="!isRegistration">
+        <LoginDialog @setRegistration="setRegistration" />
+      </div>
+      <div v-else>
+        <Registration />
+      </div>
     </div>
-    <slot name="footer">
-      <Footer />
-    </slot>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import Toast from "primevue/toast";
 import Navbar from "../components/Navbar.vue";
-import { mapActions } from "vuex";
+import LoginDialog from "../components/LoginDialog.vue";
+import Registration from "../components/Registration.vue";
 export default {
   components: {
     Navbar,
     Toast,
+    LoginDialog,
+    Registration,
   },
   data() {
     return {
-      user: "",
-      pass: "",
+      isRegistration: false,
     };
   },
   created() {
@@ -77,18 +50,12 @@ export default {
   methods: {
     ...mapActions({
       setVM: "toast/setVM",
-      openError: "toast/openError",
-      authAuthenticate: "auth/authenticate",
     }),
-    async authenticate() {
-      console.log("Authenticate", this.user);
-      const isAuth = await this.authAuthenticate({
-        user: this.user,
-        pass: this.pass,
-      });
-      if (!isAuth) {
-        this.openError("Error while authentication");
-      }
+    setRegistration() {
+      console.log("parent setRegistration");
+      console.log("this.isRegistration", this.isRegistration);
+      this.isRegistration = true;
+      console.log("this.isRegistration", this.isRegistration);
     },
   },
 };

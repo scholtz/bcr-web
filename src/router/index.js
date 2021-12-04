@@ -4,7 +4,6 @@ import Logout from "@/pages/Logout.vue";
 import UserManagement from "@/pages/admin/UserManagement.vue";
 import PlantInfo from "@/pages/plant/Info.vue";
 import NotFound from "@/pages/404.vue";
-import Registration from "@/pages/Registration.vue";
 
 const routes = [
   {
@@ -21,11 +20,6 @@ const routes = [
     path: "/admin/user-management",
     name: "user-management",
     component: UserManagement,
-  },
-  {
-    path: "/registration",
-    name: "Registration",
-    component: Registration,
   },
   {
     path: "/plant/info",
