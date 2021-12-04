@@ -1,246 +1,117 @@
 <template>
-  <div class="login-container">
-
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-
-      <div class="title-container">
-        <h3 class="title">Company Login</h3>
-      </div>
-
-      <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input
-          v-model="loginForm.username"
-          placeholder="Username"
-          name="username"
-          type="text"
-          auto-complete="on"
-          required
-        />
-      </el-form-item>
-<!-- 
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input
-          :type="passwordType"
-          v-model="loginForm.password"
-          placeholder="Password"
-          name="password"
-          auto-complete="on"
-          @keyup.enter.native="handleLogin" />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon icon-class="eye" />
-        </span>
-      </el-form-item> -->
-
-      <!-- <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button> -->
-
-    </el-form>
-
+  <div class="d-flex flex-column h-100">
+    <div class="version">
+      <a href="https://docs.blockchaincarbonregistry.com" target="_blank">
+        You are using TestNet version
+      </a>
+    </div>
+    <slot name="header">
+      <Navbar />
+    </slot>
+    <Toast />
+    <div class="d-flex flex-column flex-grow-1" v-if="$store.state.auth.token">
+      <slot></slot>
+    </div>
+    <div class="d-flex flex-column flex-grow-1" v-else>
+      <Dialog :visible="true">
+        <template #header>
+          <h3>Please authenticate</h3>
+        </template>
+        <form @submit="authenticate">
+          <div class="p-inputgroup my-1">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-user"></i>
+            </span>
+            <InputText v-model="user" placeholder="Username" />
+          </div>
+          <div class="p-inputgroup my-1">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-lock"></i>
+            </span>
+            <Password v-model="pass" />
+          </div>
+        </form>
+        <template #footer>
+          <Button
+            label="Cancel"
+            icon="pi pi-times"
+            class="p-button-text"
+            @click="$router.push('/')"
+          />
+          <Button
+            label="Login"
+            icon="pi pi-check"
+            autofocus
+            @click="authenticate"
+          />
+        </template>
+      </Dialog>
+    </div>
+    <slot name="footer">
+      <Footer />
+    </slot>
   </div>
 </template>
 
 <script>
-// import { isvalidUsername } from '@/utils/validate'
-
+import Toast from "primevue/toast";
+import Navbar from "../components/Navbar.vue";
+import { mapActions } from "vuex";
 export default {
-  name: 'Login',
-  data() {
-    // const validateUsername = (rule, value, callback) => {
-    //   if (!isvalidUsername(value)) {
-    //     callback(new Error('Please enter the correct user name'))
-    //   } else {
-    //     callback()
-    //   }
-    // }
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
-      } else {
-        callback()
-      }
-    }
-    return {
-      loginForm: {
-        username: '123456',
-        password: '123456'
-      },
-      loginRules: {
-        // username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
-      },
-      passwordType: 'password',
-      loading: false,
-      showDialog: false,
-      redirect: undefined
-    }
+  components: {
+    Navbar,
+    Toast,
   },
-  watch: {
-    $route: {
-      handler: function(route) {
-        this.redirect = route.query && route.query.redirect
-      },
-      immediate: true
-    }
+  data() {
+    return {
+      user: "",
+      pass: "",
+    };
+  },
+  created() {
+    this.setVM({ _vm: this });
+  },
+  mounted() {
+    this.setVM({ _vm: this });
   },
   methods: {
-    showPwd() {
-      if (this.passwordType === 'password') {
-        this.passwordType = ''
-      } else {
-        this.passwordType = 'password'
+    ...mapActions({
+      setVM: "toast/setVM",
+      openError: "toast/openError",
+      authAuthenticate: "auth/authenticate",
+    }),
+    async authenticate() {
+      console.log("Authenticate", this.user);
+      const isAuth = await this.authAuthenticate({
+        user: this.user,
+        pass: this.pass,
+      });
+      if (!isAuth) {
+        this.openError("Error while authentication");
       }
     },
-    handleLogin() {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true
-          this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
-            this.loading = false
-            if (this.$store.getters.code === 20000) {
-              this.$router.push({ path: this.redirect || '/' })
-            } else {
-              this.$notify({
-                title: '错误',
-                message: this.$store.getters.message,
-                type: 'error',
-                duration: 2000
-              })
-            }
-          }).catch(() => {
-            this.loading = false
-          })
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-    }
-  }
-}
+  },
+};
 </script>
-
-<style rel="stylesheet/scss" lang="scss">
-  /* 修复input 背景不协调 和光标变色 */
-  /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
-
-  $bg:#283443;
-  $light_gray:#eee;
-  $cursor: #fff;
-
-  @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
-    .login-container .el-input input{
-      color: $cursor;
-      &::first-line {
-        color: $light_gray;
-      }
-    }
-  }
-
-  /* reset element-ui css */
-  .login-container {
-    .el-input {
-      display: inline-block;
-      height: 47px;
-      width: 85%;
-      input {
-        background: transparent;
-        border: 0px;
-        -webkit-appearance: none;
-        border-radius: 0px;
-        padding: 12px 5px 12px 15px;
-        color: $light_gray;
-        height: 47px;
-        caret-color: $cursor;
-        &:-webkit-autofill {
-          box-shadow: 0 0 0px 1000px $bg inset !important;
-          -webkit-text-fill-color: $cursor !important;
-        }
-      }
-    }
-    .el-form-item {
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      color: #454545;
-    }
-  }
-</style>
-
-<style rel="stylesheet/scss" lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
-
-.login-container {
-  position: fixed;
-  height: 100%;
+<style scoped>
+.version {
+  min-height: 16px;
+  line-height: 12px;
+  background: orange;
+  color: white;
+  margin: 0;
   width: 100%;
-  background-color: $bg;
-  .login-form {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 520px;
-    max-width: 100%;
-    padding: 35px 35px 15px 35px;
-    margin: 120px auto;
-  }
-  .tips {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
-    span {
-      &:first-of-type {
-        margin-right: 16px;
-      }
-    }
-  }
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    width: 30px;
-    display: inline-block;
-  }
-  .title-container {
-    position: relative;
-    .title {
-      font-size: 26px;
-      color: $light_gray;
-      margin: 0px auto 40px auto;
-      text-align: center;
-      font-weight: bold;
-    }
-    .set-roles {
-      color: #fff;
-      position: absolute;
-      top: 5px;
-      right: 0px;
-      .international-icon {
-        font-size: 20px;
-        cursor: pointer;
-        vertical-align: -5px!important;
-      }
-    }
-  }
-  .show-pwd {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 16px;
-    color: $dark_gray;
-    cursor: pointer;
-    user-select: none;
-  }
-  .thirdparty-button {
-    position: absolute;
-    right: 35px;
-    bottom: 28px;
-  }
+  overflow: hidden;
+}
+.version a {
+  margin: 0;
+  padding: 1px 10px;
+  font-size: 10px;
+  line-height: 10px;
+  background: orange;
+  color: white;
+  white-space: nowrap;
+  text-decoration: none;
+  max-width: 100%;
 }
 </style>
