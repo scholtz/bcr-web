@@ -61,6 +61,7 @@ export default {
             {
               label: "Registration",
               icon: "pi pi-fw pi-user",
+              to: "/registration",
             },
             {
               label: "Request green certificates",
@@ -75,6 +76,7 @@ export default {
             {
               label: "Registration",
               icon: "pi pi-fw pi-user",
+              to: "/registration",
             },
             {
               label: "Request carbon neutrality certificate",
