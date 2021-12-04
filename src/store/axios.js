@@ -330,6 +330,21 @@ const actions = {
       }
       let shown = false;
       response = await axios.post(url, fd, { headers }).catch(function (error) {
+        console.log("error", error.response);
+        if (
+          (error.response &&
+            error.response &&
+            error.response &&
+            error.response.data &&
+            error.response.data.code == 400,
+          error.response.data.message)
+        ) {
+          dispatch("toast/openError", error.response.data.message, {
+            root: true,
+          });
+          shown = true;
+        }
+
         if (error.response && error.response && error.response.status == 401) {
           dispatch("toast/openError", "Session timeout - unauthenticated", {
             root: true,
@@ -343,6 +358,7 @@ const actions = {
             }
           );
         }
+
         if (
           error.response &&
           error.response.data &&

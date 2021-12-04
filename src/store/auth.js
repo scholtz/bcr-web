@@ -33,6 +33,31 @@ const actions = {
   async logout({ commit }) {
     await commit("setToken", null);
   },
+  async register({ dispatch }, { user }) {
+    console.log("data", user);
+    const data = await dispatch(
+      "axios/post",
+      {
+        url: `${this.state.config.obpApi}/obp/v4.0.0/users`,
+        body: user,
+      },
+      { root: true }
+    );
+    if (data && data.code == 409) {
+      throw data.message;
+    }
+    if (data && data.code == 400) {
+      throw data.message;
+    }
+    if (data && data.code == 404) {
+      throw data.message;
+    }
+
+    return await dispatch("authenticate", {
+      user: user.username,
+      pass: user.password,
+    });
+  },
 };
 export default {
   namespaced: true,
