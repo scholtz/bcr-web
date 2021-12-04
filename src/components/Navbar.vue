@@ -59,9 +59,9 @@ export default {
               to: "/plant/info",
             },
             {
-              label: "Registration",
+              label: "KYC",
               icon: "pi pi-fw pi-user",
-              to: "/registration",
+              to: "/user/kyc",
             },
             {
               label: "Request green certificates",
@@ -74,9 +74,9 @@ export default {
           icon: "pi pi-fw pi-file",
           items: [
             {
-              label: "Registration",
+              label: "KYC",
               icon: "pi pi-fw pi-user",
-              to: "/registration",
+              to: "/user/kyc",
             },
             {
               label: "Request carbon neutrality certificate",
