@@ -49,10 +49,12 @@
     "@vue/compiler-sfc": "^3.2.20",
     "babel-eslint": "^10.1.0",
     "eslint": "^7",
-    "eslint-plugin-vue": "^7.19.1",
+    "eslint-plugin-vue": "6.2.2",
     "glob-parent": "^6.0.2",
+    "sass-loader": "7.0.3",
     "vue": "^3.2.20",
-    "vue-cli-plugin-i18n": "^2.3.1"
+    "vue-cli-plugin-i18n": "^2.3.1",
+    "node-sass": "^4.7.2"
   },
   "eslintConfig": {
     "root": true,
@@ -60,7 +62,7 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/vue3-essential",
+      "plugin:vue/recommended",
       "eslint:recommended"
     ],
     "parserOptions": {

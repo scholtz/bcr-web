@@ -83,6 +83,12 @@ export default {
 };
 </script>
 <style scoped>
+.size-icon {
+  font-size: 20px;
+  cursor: pointer;
+  vertical-align: -4px!important;
+}
+
 @media (min-width: 768px) {
   .section-hero {
     min-height: 500px;
