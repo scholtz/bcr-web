@@ -5,8 +5,11 @@
       <br />
       <div class="p-fluid">
         <div class="p-field">
-          <label for="token">Token amount</label>
+          <label for="token">Energy usage</label>
           <InputText id="firstname" type="text" />
+          <br />
+          <br />
+          <p>Token value :</p>
         </div>
         <br />
       </div>
