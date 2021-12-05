@@ -66,6 +66,7 @@ export default {
             {
               label: "Request green certificates",
               icon: "pi pi-fw pi-user",
+              to: "/plant/certificate",
             },
           ],
         },

@@ -1,33 +1,23 @@
 <template>
   <PrivateLayout>
     <div class="container">
-      <h1>KYC form</h1>
+      <h1>Request Certificate</h1>
       <br />
       <div class="p-fluid">
         <div class="p-field">
-          <label for="firstname">KYC Document</label>
-          <br />
-          <Input id="firstname" type="file" />
+          <label for="token">Token amount</label>
+          <InputText id="firstname" type="text" />
         </div>
         <br />
-        <div class="p-field">
-          <label for="lastname">Type of KYC document</label>
-          <Dropdown
-            inputId="kyctype"
-            v-model="selectedState"
-            :options="kyctypes"
-            optionLabel="kyctype"
-            placeholder="Select"
-          />
-        </div>
       </div>
+      <Button label="Request certificate" />
     </div>
   </PrivateLayout>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import PrivateLayout from "../layouts/Private.vue";
+import PrivateLayout from "../../layouts/Private.vue";
 export default {
   components: {
     PrivateLayout,
