@@ -33,20 +33,6 @@ export default {
               label: "Token requests queue",
               icon: "pi pi-fw pi-user",
             },
-            {
-              label: "Transfer requests queue",
-              icon: "pi pi-fw pi-user",
-            },
-          ],
-        },
-        {
-          label: "Transfer confirmator",
-          icon: "pi pi-fw pi-file",
-          items: [
-            {
-              label: "Transfer requests queue",
-              icon: "pi pi-fw pi-user",
-            },
           ],
         },
         {

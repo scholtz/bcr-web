@@ -5,6 +5,27 @@
       <br />
       <div class="p-fluid">
         <div class="p-field">
+          <label for="lastname">Type of KYC registration</label>
+          <Dropdown
+            inputId="kyctype"
+            v-model="selectedState"
+            :options="kyctypes"
+            optionLabel="kyctype"
+            placeholder="Select"
+          />
+        </div>
+        <br />
+        <div class="p-field">
+          <label for="firstname">Name of the user/ organization</label>
+          <InputText id="firstname" type="text" />
+        </div>
+        <br />
+        <div class="p-field">
+          <label for="firstname">Tax Identification number</label>
+          <InputText id="firstname" type="text" />
+        </div>
+        <br />
+        <div class="p-field">
           <label for="firstname">KYC Document</label>
           <br />
           <Input id="firstname" type="file" />
