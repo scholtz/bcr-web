@@ -5,41 +5,35 @@
       <br />
       <div class="p-fluid">
         <div class="p-field">
-          <label for="lastname">Type of KYC registration</label>
+          <label for="kyctype">Type of KYC registration</label>
           <Dropdown
             inputId="kyctype"
-            v-model="selectedState"
+            v-model="kyctypeselection"
             :options="kyctypes"
-            optionLabel="kyctype"
-            placeholder="Select"
+            optionLabel="name"
+            optionValue="code"
+            placeholder="Select personal or business account registration"
           />
         </div>
-        <br />
-        <div class="p-field">
-          <label for="firstname">Name of the user/ organization</label>
-          <InputText id="firstname" type="text" />
+        <div v-if="kyctypeselection == 'B2B'">
+          <TabView>
+            <TabPanel header="Business legal info">
+              <B2BLegalInfo />
+            </TabPanel>
+            <TabPanel header="Business contact"> <B2BContact /></TabPanel>
+            <TabPanel header="Beneficial owners"> <B2BBeneficial /> </TabPanel>
+            <TabPanel header="Documents"> <B2BDocuments /> </TabPanel>
+            <TabPanel header="Review"> <B2BReview /> </TabPanel>
+          </TabView>
         </div>
-        <br />
-        <div class="p-field">
-          <label for="firstname">Tax Identification number</label>
-          <InputText id="firstname" type="text" />
-        </div>
-        <br />
-        <div class="p-field">
-          <label for="firstname">KYC Document</label>
-          <br />
-          <Input id="firstname" type="file" />
-        </div>
-        <br />
-        <div class="p-field">
-          <label for="lastname">Type of KYC document</label>
-          <Dropdown
-            inputId="kyctype"
-            v-model="selectedState"
-            :options="kyctypes"
-            optionLabel="kyctype"
-            placeholder="Select"
-          />
+        <div v-if="kyctypeselection == 'B2C'">
+          <TabView>
+            <TabPanel header="Business legal info">
+              <B2CLegalInfo />
+            </TabPanel>
+            <TabPanel header="Business contact"> <B2CDocuments /> </TabPanel>
+            <TabPanel header="Review"> <B2CReview /> </TabPanel>
+          </TabView>
         </div>
       </div>
     </div>
@@ -48,13 +42,35 @@
 
 <script>
 import { mapActions } from "vuex";
-import PrivateLayout from "../layouts/Private.vue";
+import PrivateLayout from "../layouts/Public.vue";
+import B2BLegalInfo from "../components/kyc/b2b/LegalInfo.vue";
+import B2BContact from "../components/kyc/b2b/Contact.vue";
+import B2BBeneficial from "../components/kyc/b2b/Beneficial.vue";
+import B2BDocuments from "../components/kyc/b2b/Documents.vue";
+import B2CLegalInfo from "../components/kyc/b2c/LegalInfo.vue";
+import B2CDocuments from "../components/kyc/b2c/Documents.vue";
+import B2BReview from "../components/kyc/b2b/Review.vue";
+import B2CReview from "../components/kyc/b2c/Review.vue";
+
 export default {
   components: {
     PrivateLayout,
+    B2BLegalInfo,
+    B2BContact,
+    B2BBeneficial,
+    B2BDocuments,
+    B2CLegalInfo,
+    B2CDocuments,
+    B2BReview,
+    B2CReview,
   },
   data() {
     return {
+      kyctypeselection: "",
+      kyctypes: [
+        { name: "Business account", code: "B2B" },
+        { name: "Personal account", code: "B2C" },
+      ],
       state: "PersonalInformation",
     };
   },

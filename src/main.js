@@ -34,6 +34,9 @@ import Badge from "primevue/badge";
 import Menubar from "primevue/menubar";
 import Password from "primevue/password";
 import Button from "primevue/button";
+import TabView from "primevue/tabview";
+import TabPanel from "primevue/tabpanel";
+import Textarea from "primevue/textarea";
 
 import "primevue/resources/themes/saga-blue/theme.css";
 
@@ -62,6 +65,9 @@ myApp.component("MultiSelect", MultiSelect);
 myApp.component("Menubar", Menubar);
 myApp.component("Password", Password);
 myApp.component("Button", Button);
+myApp.component("TabView", TabView);
+myApp.component("TabPanel", TabPanel);
+myApp.component("Textarea", Textarea);
 myApp.directive("badge", BadgeDirective);
 
 myApp.config.globalProperties.$filters = {
