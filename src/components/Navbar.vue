@@ -82,6 +82,7 @@ export default {
             {
               label: "Request carbon neutrality certificate",
               icon: "pi pi-fw pi-user",
+              to: "/carbonFriendly/CarbonFriendly",
             },
           ],
         },

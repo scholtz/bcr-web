@@ -6,6 +6,7 @@ import PlantInfo from "@/pages/plant/Info.vue";
 import KYC from "@/pages/KYC.vue";
 import NotFound from "@/pages/404.vue";
 import Certificate from "@/pages/plant/Certificate.vue";
+import CarbonFriendly from "@/pages/carbonFriendly/CarbonFriendly.vue";
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: "/plant/certificate",
     name: "Certificate",
     component: Certificate,
+  },
+  {
+    path: "/carbonFriendly/CarbonFriendly",
+    name: "CarbonFriendly",
+    component: CarbonFriendly,
   },
   {
     path: "/:catchAll(.*)",
