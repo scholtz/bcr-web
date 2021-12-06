@@ -467,7 +467,9 @@
               />
             </div>
             <div class="col-sm-3 col-6 mt-5 mt-sm-0">
-              <h4 class="d-block text-uppercase font-weight-bold mb-4">Guru</h4>
+              <h4 class="d-block text-uppercase font-weight-bold mb-4">
+                Guru/Amelia
+              </h4>
               <img
                 src="https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png"
                 alt="Raised circle image"
