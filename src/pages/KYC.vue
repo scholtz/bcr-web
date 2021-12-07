@@ -42,7 +42,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import PrivateLayout from "../layouts/Public.vue";
+import PrivateLayout from "../layouts/Private.vue";
 import B2BLegalInfo from "../components/kyc/b2b/LegalInfo.vue";
 import B2BContact from "../components/kyc/b2b/Contact.vue";
 import B2BBeneficial from "../components/kyc/b2b/Beneficial.vue";
