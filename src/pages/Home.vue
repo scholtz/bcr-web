@@ -68,13 +68,22 @@
 
           <ul class="navbar-nav align-items-lg-center ml-lg-auto">
             <li class="nav-item d-none d-lg-block">
-              <a href="" class="btn btn-primary btn-icon">
+              <a
+                href="/user/kyc"
+                class="btn btn-primary btn-icon"
+                @click="$router.push('/user/kyc')"
+              >
                 <span class="btn-inner--icon"> </span>
                 <span class="nav-link-inner--text">Login</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-outline-primary" href="" target="">
+              <a
+                class="btn btn-outline-primary"
+                href="/user/kyc"
+                target=""
+                @click="$router.push('/user/kyc')"
+              >
                 <span class="nav-link-inner--text">Registration</span>
               </a>
             </li>
@@ -594,6 +603,9 @@ export default {
 };
 </script>
 <style scoped>
+.navbar.navbar-main {
+  z-index: 0;
+}
 .size-icon {
   font-size: 20px;
   cursor: pointer;
