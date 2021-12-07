@@ -15,14 +15,13 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./registerServiceWorker";
 
+import "./assets/css/nucleo-icons.css";
+import "./assets/css/nucleo-svg.css";
 
-import "./assets/css/nucleo-icons.css" 
-import "./assets/css/nucleo-svg.css"
+import "./assets/css/font-awesome.css";
+import "./assets/css/nucleo-svg.css";
 
-import"./assets/css/font-awesome.css"
-import"./assets/css/nucleo-svg.css"
-
-import"./assets/css/argon-design-system.css?v=1.2.2"
+import "./assets/css/argon-design-system.css?v=1.2.2";
 
 import moment from "moment";
 import DataTable from "primevue/datatable";
@@ -46,14 +45,6 @@ import Button from "primevue/button";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
 import Textarea from "primevue/textarea";
-
-
-
-
-
-
-
-
 
 import "primevue/resources/themes/saga-blue/theme.css";
 
